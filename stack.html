@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html> <head> 
+	<title>Stack Page</title>
+	<style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: red;
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: #f1f1f1; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: green;
+	  }
+	}
+</style></head>
+
+
+
+<body>
+	<h1>Shiva Kumar Amanchi Builds a Stack</h1>
+		<div class="flex-container" id="target">
+			<div class="stack">row item 1</div>   
+			<div class="stack">row item 2</div>  
+			<div class="stack">row item 3</div>   
+		</div>
+
+		<br>
+		<br>
+		<div>
+		<input id="inputText" type="text"><br><br>
+		</div>
+	
+		<p> Press the button to create an new element of type div and then add it to the container.
+</p>
+        <button onclick="makeNewDiv()">Push value</button>
+        <button onclick="popItem()">Pop</button>
+        <button onclick="zap()">Zap values</button>
+
+</body>
+<script>
+	//Scrpit to push the new item into stack
+
+	function makeNewDiv(){
+		let element = document.createElement("div")
+        let input_one = document.getElementById("inputText")
+		element.innerHTML = input_one.value
+		element.className = "stack"
+
+		document.getElementById('target').appendChild(element)
+
+	}
+
+	//Script to pop the item
+
+    function popItem(){
+        var stackItems = document.getElementsByClassName("stack")
+        var stackLength = stackItems.length
+        if(stackLength>0)
+            stackItems[stackLength-1].remove()
+    }
+
+
+	// Script to remove the similar items
+
+    function zap(){
+        var stackItems_new = document.getElementsByClassName("stack")
+        let input_new = document.getElementById("inputText").value
+        if(stackItems_new!= undefined && stackItems_new.length >0){
+            for(let i=0; i<stackItems_new.length; i++){
+                if(stackItems_new[i].innerHTML == input_new){
+                    var itemToBeRemoved = stackItems_new[i].innerHTML
+                    stackItems_new[i].remove()
+                    console.log(itemToBeRemoved)
+                    i--
+                }
+            }
+        }
+    }
+</script>
+</html>
